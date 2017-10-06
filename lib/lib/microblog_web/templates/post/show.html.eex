@@ -1,0 +1,20 @@
+<div class= "container col-md-9 mx-auto my-4">
+	<h2>Show Post</h2>
+	<div class="card my-2 mx-auto">
+		<div class="card-body">
+			<span>
+				<a href="#" class=card-link style="font-size: 24px"> <%= @post.user.name %></a>
+				<a href="#" class="mb-2 text-muted card-link">@<%= @post.user.handle %></a>
+			</span>
+			<button class="btn btn-outline-success my-2 my-sm-0 mr-5" style="float: right" id="follow" type="submit">Follow</button>
+			<p class="card-title mt-2" style="clear: both">
+				<%= @post.body %>
+			</p>
+			<br>
+			<ul class="list-inline">
+				<li class="list-inline-item"><%= link "Edit", to: post_path(@conn, :edit, @post), class: "btn btn-outline-success my-2" %></li>
+				<li class="list-inline-item"><%= link "Back", to: post_path(@conn, :index), class: "btn btn-outline-success my-2" %></li>
+			</ul>
+		</div>
+	</div>
+</div>
