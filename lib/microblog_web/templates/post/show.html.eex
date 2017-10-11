@@ -12,7 +12,7 @@
 			</p>
 			<br>
 			<ul class="list-inline">
-                             <%= if @current_user.id == @post.user.id do %>
+                             <%= if @current_user && @current_user.id == @post.user.id do %>
 				<li class="list-inline-item"><%= link "Edit", to: post_path(@conn, :edit, @post), class: "btn btn-outline-success my-2" %></li>
                              <% end %>
 				<li class="list-inline-item"><%= link "Back", to: post_path(@conn, :index), class: "btn btn-outline-success my-2" %></li>
