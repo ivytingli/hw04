@@ -1,0 +1,20 @@
+defmodule Microblog.Feedback.Like do
+  use Ecto.Schema
+  import Ecto.Changeset
+  alias Microblog.Feedback.Like
+
+
+  schema "likes" do
+    field :post_id, :
+    field :user_id, :id
+
+    timestamps()
+  end
+
+  @doc false
+  def changeset(%Like{} = like, attrs) do
+    like
+    |> cast(attrs, [])
+    |> validate_required([])
+  end
+end

@@ -17,6 +17,72 @@ Post:
 
 Follows:
 - I was not able to get to implement follows in time
-- I was considering making the follow button a <%= link %> that would have the action of :delete for /follows
+
+I was trying to get follows to work with the form_for below instead of the button, but I couldn't get it to recognize @follows as a changeset. 
+I also tried @follow, but it didn't work.
+I think I may have been missing something and I'm not sure what it was. 
+I couldn't leave my comments in the file because it wouldn't compile if I did, so I put my code snippet here.
+
+            #<%= form_for @follows, follow_path(@conn, :create), fn f -> %>
+            #<%= if @follows.action do %>
+            #<div class="alert alert-danger">
+            #  <p>Oops, something went wrong! Please check the errors below.</p>
+            #</div>
+            #<% end %>
+            #<div class="form-group">
+            #  <%= hidden_input f, :followed_user, class: "form-control", value: @current_user.id %>
+            #  <%= error_tag f, :followed_user %>
+            #</div>
+            #<div class="form-group">
+            #  <%= hidden_input f, :follower, class: "form-control", value: @user.id %>
+            #  <%= error_tag f, :follower %>
+            #</div>
+            #<div class="form-group">
+            #  <%= submit "Follow", class: "btn btn-primary" %>
+            #</div>
+            #<% end %>
+
+            <%= inputs_for f, :users, fn i -> %>
+           <%= if @follows.action do %>
+           <div class="alert alert-danger">
+             <p>Oops, something went wrong! Please check the errors below.</p>
+           </div>
+           <% end %>
+           <div class="form-group">
+             <%= hidden_input f, :followed_user, class: "form-control", value: @current_user.id %>
+             <%= error_tag f, :followed_user %>
+           </div>
+           <div class="form-group">
+             <%= hidden_input f, :follower, class: "form-control", value: @user.id %>
+             <%= error_tag f, :follower %>
+           </div>
+           <div class="form-group">
+             <%= submit "Follow", class: "btn btn-primary" %>
+           </div>
+  </div>
+<% end %>
+
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+<div class="form-group">
+              <%= hidden_input f, :followed_user, class: "form-control", value: @current_user.id %>
+              <%= error_tag f, :followed_user %>
+            </div>
+            <div class="form-group">
+              <%= hidden_input f, :follower, class: "form-control", value: @current_user.id %>
+              <%= error_tag f, :follower %>
+            </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
 
 
+I GIVE UP

@@ -5,7 +5,7 @@ defmodule MicroblogWeb.FollowController do
   alias Microblog.Account.Follow
 
   def index(conn, _params) do
-    follows = Account.list_follows()
+    follows = Account.list_follows() 
     render(conn, "index.html", follows: follows)
   end
 
@@ -17,6 +17,8 @@ defmodule MicroblogWeb.FollowController do
   def create(conn, %{"follow" => follow_params}) do
     case Account.create_follow(follow_params) do
       {:ok, follow} ->
+        follow = Microblog.Repo.preload(follow, :user)
+
         conn
         |> put_flash(:info, "Follow created successfully.")
         |> redirect(to: follow_path(conn, :show, follow))
@@ -26,7 +28,7 @@ defmodule MicroblogWeb.FollowController do
   end
 
   def show(conn, %{"id" => id}) do
-    follow = Account.get_follow!(id)
+    follow = Account.get_follow!(id) 
     render(conn, "show.html", follow: follow)
   end
 

@@ -114,7 +114,7 @@ defmodule Microblog.Account do
 
   """
   def list_follows do
-    Repo.all(Follow)
+    Repo.all(Follow) |> Repo.preload(:followed_user)
   end
 
   @doc """

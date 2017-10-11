@@ -37,7 +37,7 @@ defmodule Microblog.Blog do
   """
   def get_post!(id) do
     Repo.get!(Post, id)
-    |> Repo.preload([:user])
+    |> Repo.preload([:user, :like])
   end
 
   @doc """

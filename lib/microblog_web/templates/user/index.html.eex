@@ -10,7 +10,7 @@
       <div class="card">
         <div class="card-body">
           <div>
-            <button class="btn btn-outline-success my-2 mr-lg-2" style="float: right" type="submit">Follow</button>
+            
             <div class="inline">
               <%= link user.name, to: user_path(@conn, :show, user), class: "card-title card-link" %> <br>
               <span class="mb-2 text-muted card-link">@<%= user.handle %> </span>

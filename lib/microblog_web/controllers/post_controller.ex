@@ -30,7 +30,9 @@ defmodule MicroblogWeb.PostController do
 
   def show(conn, %{"id" => id}) do
     post = Blog.get_post!(id)
-    render(conn, "show.html", post: post)
+    |> Microblog.Repo.preload(:user)
+    count_likes = Microblog.Feedback.get_like_count(id)
+    render(conn, "show.html", post: post, count_likes: count_likes)
   end
 
   def edit(conn, %{"id" => id}) do

@@ -1,7 +1,8 @@
 <h2>Show Follow</h2>
 
 <ul>
-
+<%= @follow.followed_user %>
+<%= @follow.follower %>
 </ul>
 
 <span><%= link "Edit", to: follow_path(@conn, :edit, @follow) %></span>

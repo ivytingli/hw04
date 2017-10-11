@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,27 +11,29 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
   <body>
-    <!--
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
-      -->
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Tweeter</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="#">Home</a>
-            <a class="nav-item nav-link" href="#">Users</a>
-            <a class="nav-item nav-link" href="#">Posts</a>
-            <a class="nav-item nav-link" href="#">Profile</a>
+            <%= link "Users", to: user_path(@conn, :index), class: "nav-item nav-link" %>
+            <%= link "Posts", to: post_path(@conn, :index), class: "nav-item nav-link" %>
+            <!-- <a class="nav-item nav-link" href="#">Profile</a> -->
           </div>
         </div>
+      <%= if @current_user do %>
+        <span class="text-light">
+          <%= @current_user.email %> |
+          <%= link "logout", to: session_path(@conn, :logout), method: :delete, class: "btn btn-primary" %>
+        </span>
+      <% else %>
+        <%= form_for @conn, session_path(@conn, :login), 
+              [as: "user", class: "form-inline w-75"], fn f -> %>
+          <input type="text" placeholder="email" 
+                             class="form-control" name="email">
+          <input type="submit" value="Log in" class="btn btn-primary">
+        <% end %>
+      <% end %>
       </nav>
       
       <%= if get_flash(@conn, :info) do %>
@@ -48,5 +51,3 @@
         <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
       </body>
     </html>
-
-    <span><%= link "New User", to: user_path(@conn, :new)%></span>

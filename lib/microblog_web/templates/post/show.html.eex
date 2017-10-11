@@ -12,9 +12,36 @@
 			</p>
 			<br>
 			<ul class="list-inline">
+                             <%= if @current_user.id == @post.user.id do %>
 				<li class="list-inline-item"><%= link "Edit", to: post_path(@conn, :edit, @post), class: "btn btn-outline-success my-2" %></li>
+                             <% end %>
 				<li class="list-inline-item"><%= link "Back", to: post_path(@conn, :index), class: "btn btn-outline-success my-2" %></li>
+                                <li class="list-inline-item my-2">Likes: <%= @count_likes %></li>   
 			</ul>
 		</div>
 	</div>
+
+        <h2> <span id="likes-count-js"></span> Likes 
+             <%= if @current_user do %>
+	                          <button id="like-button" class="btn btn-primary" data-user-id="<%= @current_user.id %>">Like</button>
+	                          <button id="unlike-button" class="btn btn-primary" data-user-id="<%= @current_user.id %>">Unlike</button>
+	                        <% end %> </h2>
+
+	<div id="post-likes" 
+	data-path="<%= like_path(@conn, :index) %>" data-post-id="<%= @post.id %>">
+		&nbsp;
+	</div>
+
+	<script id="likes-template" type="text/x-handlebars-template">
+		
+		{{#each data}}
+		<div class="card pl-2 pt-2 my-2 mx-auto">
+			<div class="card-text">
+				<p>{{user_handle}} liked this post.</p>
+			</div>
+		</div>
+		{{else}}
+		<p>No likes</p>
+		{{/each}}
+	</script>
 </div>

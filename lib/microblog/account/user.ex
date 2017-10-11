@@ -20,6 +20,7 @@ defmodule Microblog.Account.User do
 
     user
     |> cast(attrs, [:name, :handle, :email, :bio])
+    |> cast_assoc(:follows)
     |> validate_required([:name, :handle, :email])
   end
 end
