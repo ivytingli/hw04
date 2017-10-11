@@ -1,8 +1,0 @@
-run_erl [14057] Wed Oct 11 01:46:17 2017
-Args before exec of shell:
-run_erl [14057] Wed Oct 11 01:46:17 2017
-argv[0] = sh
-run_erl [14057] Wed Oct 11 01:46:17 2017
-argv[1] = -c
-run_erl [14057] Wed Oct 11 01:46:17 2017
-argv[2] = exec "/home/ivy/backup_microblog/bin/microblog" "console" --  
