@@ -54,7 +54,33 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 socket.connect()
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
+let channel = socket.channel("updates:all", {});
+let submit = $("#post-button");
+
+function clicked() {
+  let user = $("#user-handle").data('user-handle');
+  let body = $("#body");
+  console.log("ot here", user);
+  channel.push("new_post", {body: body.val(), user: user});
+}
+
+channel.on("new_post", payload => {
+  console.log(payload);
+  var table = $("#post-table");
+  table.prepend(`<tr><td>${payload.body}</td><td>${payload.user}</td></tr>`)
+
+  var update = $("#post-update");
+  update.html(`<p class='alert alert-info' role='alert'>${payload.user} made a new post.</p>`);
+  setTimeout(clearAlert, 5000);
+})
+
+function clearAlert() {
+  var update = $("#post-update");
+  update.html(``);
+}
+
+submit.click(clicked);
+
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })

@@ -11,7 +11,7 @@ config :microblog,
 
 # Configures the endpoint
 config :microblog, MicroblogWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: "45.77.103.19"],
   secret_key_base: "FV8fHStfB43vSQsfD2i2DH5W2fxbCLsykMilqGXEnm47xJBcKHwb5AQYQbZbnNpq",
   render_errors: [view: MicroblogWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Microblog.PubSub,

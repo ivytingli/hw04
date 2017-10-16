@@ -2,17 +2,19 @@
   <%= if @current_user do %>
   <%= link "New Post", to: post_path(@conn, :new), class: "btn btn-outline-success my-2 mr-lg-2" %>
   <% end %>
+
   <table class="table">
     <thead>
       <tr>
         <th>Body</th>
-        <th></th>
+        <th>User</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="post-table">
       <%= for post <- @posts do %>
       <tr>
         <td><%= post.body %></td>
+        <td><%= post.user.handle %></td>
         <td class="text-right">
           <span><%= link "Show", to: post_path(@conn, :show, post), class: "btn btn-outline-success my-2 mr-lg-2" %></span>
           <%= if @current_user do %>
