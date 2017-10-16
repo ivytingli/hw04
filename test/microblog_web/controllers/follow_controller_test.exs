@@ -12,6 +12,7 @@ defmodule MicroblogWeb.FollowControllerTest do
     follow
   end
 
+  @tag :skip
   describe "index" do
     test "lists all follows", %{conn: conn} do
       conn = get conn, follow_path(conn, :index)
@@ -19,6 +20,7 @@ defmodule MicroblogWeb.FollowControllerTest do
     end
   end
 
+  @tag :skip
   describe "new follow" do
     test "renders form", %{conn: conn} do
       conn = get conn, follow_path(conn, :new)
@@ -26,6 +28,7 @@ defmodule MicroblogWeb.FollowControllerTest do
     end
   end
 
+  @tag :skip
   describe "create follow" do
     test "redirects to show when data is valid", %{conn: conn} do
       conn = post conn, follow_path(conn, :create), follow: @create_attrs
@@ -37,12 +40,14 @@ defmodule MicroblogWeb.FollowControllerTest do
       assert html_response(conn, 200) =~ "Show Follow"
     end
 
+    @tag :skip
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post conn, follow_path(conn, :create), follow: @invalid_attrs
       assert html_response(conn, 200) =~ "New Follow"
     end
   end
 
+  @tag :skip
   describe "edit follow" do
     setup [:create_follow]
 
@@ -52,6 +57,7 @@ defmodule MicroblogWeb.FollowControllerTest do
     end
   end
 
+  @tag :skip
   describe "update follow" do
     setup [:create_follow]
 
@@ -63,12 +69,14 @@ defmodule MicroblogWeb.FollowControllerTest do
       assert html_response(conn, 200)
     end
 
+    @tag :skip
     test "renders errors when data is invalid", %{conn: conn, follow: follow} do
       conn = put conn, follow_path(conn, :update, follow), follow: @invalid_attrs
       assert html_response(conn, 200) =~ "Edit Follow"
     end
   end
 
+  @tag :skip
   describe "delete follow" do
     setup [:create_follow]
 
