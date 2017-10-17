@@ -1,0 +1,40 @@
+CS4550 Web Dev, Fall 2017.
+
+HW06 status report form.
+
+Please answer the following questions and submit the filled-in file to Bottlenose.
+
+
+1. What's your name?
+Ivy Li
+
+
+2. What's the link to your Github repo's releases page?
+https://github.com/ivytingli/hw04/releases
+
+3. What's the link to your deployed Microblog app?
+microblog.ivyli.site
+
+
+4. What's the link to the Travis CI build for the version of your app
+   that you made a release of? You can find this on Travis under "Build History".
+https://travis-ci.org/ivytingli/hw04/builds
+
+5. Did you successfully deploy? If not, what doesn't work?
+Yes. I successfully deployed.
+
+6. Did you successfully implement live updates? If not, what doesn't work?
+I implemented live updates for all but not for follows because I don't have working
+follows. Currently if you have two tabs open and post in one, in the other tab, there
+will be an alert letting you know who posted that disappears after 5 seconds. 
+If the listening tab is on the posts index page, it will also update the top of the 
+table of posts with the new post.
+
+7. Did Prof. Tuck give you any alternate / additional goals for this assignment?
+   If so, what were they and how well did you complete them with your submission?
+N/A
+
+
+8. Is there any other useful information that you want to provide for grading?
+No.
+
