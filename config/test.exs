@@ -18,7 +18,7 @@ config :logger, level: :warn
 #  hostname: "localhost",
 #  pool: Ecto.Adapters.SQL.Sandbox
 
-Configure your database
+#Configure your database
 config :microblog, Microblog.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
