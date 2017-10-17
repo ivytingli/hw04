@@ -21,7 +21,7 @@ defmodule MicroblogWeb.PostController do
         post = Microblog.Repo.preload(post, :user)
 
         conn
-        |> put_flash(:info, "#{post.user.handle} posted a message.")
+        |> put_flash(:info, "You successfully posted a message.")
         |> redirect(to: post_path(conn, :show, post))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -30,7 +30,9 @@ defmodule MicroblogWeb.PostController do
 
   def show(conn, %{"id" => id}) do
     post = Blog.get_post!(id)
-    render(conn, "show.html", post: post)
+    |> Microblog.Repo.preload(:user)
+    count_likes = Microblog.Feedback.get_like_count(id)
+    render(conn, "show.html", post: post, count_likes: count_likes)
   end
 
   def edit(conn, %{"id" => id}) do

@@ -6,17 +6,17 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= hidden_input f, :user_id, class: "form-control", value: @current_user.id %>
+  <div class="form-group" id= "user-handle" data-user-handle="<%= @current_user.handle %>">
+    <%= hidden_input f, :user_id, class: "form-control", id: "user", value: @current_user.id %>
     <%= error_tag f, :user %>
 
   <div class="form-group">
     <%= label f, :body, class: "control-label" %>
-    <%= textarea f, :body, class: "form-control" %>
+    <%= textarea f, :body, class: "form-control", id: "body" %>
     <%= error_tag f, :body %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group" id="post-button">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -54,9 +54,50 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 socket.connect()
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
+let channel = socket.channel("updates:all", {});
+let submit = $("#post-button");
+
+function clicked() {
+  let user = $("#user-handle").data('user-handle');
+  let body = $("#body");
+  channel.push("new_post", {body: body.val(), user: user});
+}
+
+channel.on("new_post", payload => {
+  var table = $("#post-table");
+  table.prepend(`<tr><td>${payload.body}</td><td>${payload.user}</td><td class="text-right">
+          <span><a class="btn btn-outline-success my-2 mr-lg-2 one" href="/posts/1">Show</a></span>
+          <span><a class="btn btn-outline-success my-2 mr-lg-2 two" href="/posts/1/edit">Edit</a></span>
+          <span><a class="btn btn-danger btn-xs three" data-confirm="Are you sure?" data-csrf="dh82C3QfNwYeF3Y0FFgmKkIUAAdHAAAA2KZm6vAiQN/LpnQK0aSJpw==" data-method="delete" data-to="/posts/1" href="#" rel="nofollow">Delete</a></span>
+        </td></tr>`)
+
+  var update = $("#post-update");
+  update.html(`<p class='alert alert-info' role='alert'>${payload.user} made a new post.</p>`);
+  setTimeout(clearAlert, 5000);
+})
+
 channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
+  .receive("ok", resp => { console.log("Joined successfully", resp) 
+   var success = document.getElementById("success-alert");
+
+   if(success && success.innerHTML == "You successfully posted a message.") {
+     console.log("finally")
+     location.pathname.slice(7);
+     channel.push("created", {id: location.pathname.slice(7)});
+  }})
   .receive("error", resp => { console.log("Unable to join", resp) })
+
+channel.on("created", payload => {
+  $('.one', $('#post-table > tr:nth-child(1)')).attr('href', "/posts/" + payload.id)
+  $('.two', $('#post-table > tr:nth-child(1)')).attr('href', "/posts/" + payload.id + "/edit")
+  $('.three', $('#post-table > tr:nth-child(1)')).attr('data-to', "/posts/" + payload.id)
+})
+
+function clearAlert() {
+  var update = $("#post-update");
+  update.html(``);
+}
+
+submit.click(clicked);
 
 export default socket

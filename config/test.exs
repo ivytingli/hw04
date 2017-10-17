@@ -10,10 +10,20 @@ config :microblog, MicroblogWeb.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
+#config :microblog, Microblog.Repo,
+#  adapter: Ecto.Adapters.Postgres,
+#  username: "microblog",
+#  password: "eiz2naeSee",
+#  database: "microblog_test",
+#  hostname: "localhost",
+#  pool: Ecto.Adapters.SQL.Sandbox
+
+#Configure your database
 config :microblog, Microblog.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "microblog_test",
-  hostname: "localhost",
+  database: "microblog_prod",
   pool: Ecto.Adapters.SQL.Sandbox
+
+

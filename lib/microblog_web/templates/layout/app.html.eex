@@ -13,12 +13,18 @@
   <body>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Tweeter</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="#">Home</a>
             <%= link "Users", to: user_path(@conn, :index), class: "nav-item nav-link" %>
             <%= link "Posts", to: post_path(@conn, :index), class: "nav-item nav-link" %>
+<<<<<<< HEAD
             <!-- <a class="nav-item nav-link" href="#">Profile</a> -->
+=======
+>>>>>>> 013a8dfb28fe5fa68811dbd757a9ce5bd5d8891d
           </div>
         </div>
       <%= if @current_user do %>
@@ -37,11 +43,14 @@
       </nav>
       
       <%= if get_flash(@conn, :info) do %>
-        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+        <p class="alert alert-info" id="success-alert" role="alert"><%= get_flash(@conn, :info) %></p>
       <% end %>
+
       <%= if get_flash(@conn, :error) do %>
         <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <% end %>
+
+      <div id="post-update"></div>
 
       <div class="container">
         <main role="main">

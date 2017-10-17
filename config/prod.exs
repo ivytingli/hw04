@@ -15,7 +15,8 @@ use Mix.Config
 # which you typically run after static files are built.
 config :microblog, MicroblogWeb.Endpoint,
   http: [port: 8000],
-  server: true
+  server: true,
+  check_origin: false
 #  load_from_system_env: true,
 #  cache_static_manifest: "priv/static/cache_manifest.json"
 
