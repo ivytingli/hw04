@@ -15,13 +15,8 @@ defmodule Microblog.Account.Follow do
   @doc false
   def changeset(%Follow{} = follow, attrs) do
     follow
-<<<<<<< HEAD
-    |> cast(attrs, [:followed_user, :follower])
-    |> validate_required([:followed_user, :follower])
-=======
     |> cast(attrs, [:follower])
     |> cast_assoc(:user)
     |> validate_required([:user, :follower])
->>>>>>> 013a8dfb28fe5fa68811dbd757a9ce5bd5d8891d
   end
 end

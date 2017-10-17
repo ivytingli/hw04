@@ -1,7 +1,8 @@
 Github link: https://github.com/ivytingli/hw04
 Website link: microblog.ivyli.site
 
-<<<<<<< HEAD
+README for HW 05 - Likes
+
 Logout:
 - takes you to post index
 - not being logged in doesn't show the edit or new buttons for post
@@ -38,7 +39,7 @@ I couldn't leave my comments in the file because it wouldn't compile if I did, s
             #  <%= submit "Follow", class: "btn btn-primary" %>
             #</div>
             #<% end %>
-=======
+
 Likes:
 - likes button only shows if you are logged in as a user
 - like/unlike button toggle based on whether or not you have already liked a post
@@ -55,7 +56,6 @@ I got some help from Ryan Hughes on the implementation of likes, specifically th
 I implemented counting likes through both elixir and through javascript.
 The elixir one only updates when the page is refreshed.
 The javascript one updates without page refresh (it is the one shown as a header).
->>>>>>> 013a8dfb28fe5fa68811dbd757a9ce5bd5d8891d
 
 Deploy script:
 I was not able to successfully deploy through running the script. 
