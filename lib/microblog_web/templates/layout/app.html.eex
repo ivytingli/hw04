@@ -21,10 +21,6 @@
             <a class="nav-item nav-link" href="#">Home</a>
             <%= link "Users", to: user_path(@conn, :index), class: "nav-item nav-link" %>
             <%= link "Posts", to: post_path(@conn, :index), class: "nav-item nav-link" %>
-<<<<<<< HEAD
-            <!-- <a class="nav-item nav-link" href="#">Profile</a> -->
-=======
->>>>>>> 013a8dfb28fe5fa68811dbd757a9ce5bd5d8891d
           </div>
         </div>
       <%= if @current_user do %>
