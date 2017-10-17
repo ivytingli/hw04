@@ -20,6 +20,11 @@ defmodule MicroblogWeb.UpdatesChannel do
     {:noreply, socket}
   end
 
+  def handle_in("created", payload, socket) do
+    broadcast! socket, "created", payload
+    {:noreply, socket}
+  end
+
   # It is also common to receive messages from the client and
   # broadcast to everyone in the current topic (updates:lobby).
   def handle_in("shout", payload, socket) do

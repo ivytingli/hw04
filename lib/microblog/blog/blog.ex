@@ -18,7 +18,8 @@ defmodule Microblog.Blog do
 
   """
   def list_posts do
-    Repo.all(Post) |> Repo.preload(:user)
+    query = from p in Post, order_by: [desc: p.updated_at]
+    Repo.all(query) |> Repo.preload(:user)
   end
 
   @doc """

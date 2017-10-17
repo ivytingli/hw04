@@ -21,7 +21,7 @@ defmodule MicroblogWeb.PostController do
         post = Microblog.Repo.preload(post, :user)
 
         conn
-        |> put_flash(:info, "#{post.user.handle} posted a message.")
+        |> put_flash(:info, "You successfully posted a message.")
         |> redirect(to: post_path(conn, :show, post))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
