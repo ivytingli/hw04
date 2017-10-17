@@ -24,6 +24,6 @@ config :microblog, Microblog.Repo,
   username: "postgres",
   password: "postgres",
   database: "microblog_prod",
-  pool_size: 15
+  pool: Ecto.Adapters.SQL.Sandbox
 
 
