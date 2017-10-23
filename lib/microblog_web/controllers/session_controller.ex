@@ -28,6 +28,9 @@ defmodule MicroblogWeb.SessionController do
 
   def get_and_auth_user(email, password) do
     user = Account.get_user_by_email(email)
+    if user do
+      user = throttle_attempts(user)
+    end
 
     case Comeonin.Argon2.check_pass(user, password) do
       {:ok, user} -> user
@@ -36,6 +39,7 @@ defmodule MicroblogWeb.SessionController do
   end
 
   def update_tries(throttle, prev) do
+    IO.puts(prev)
     if throttle do
       prev + 1
     else

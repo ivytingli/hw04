@@ -12,7 +12,7 @@
   </head>
   <body>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Tweeter</a>
+        <%= link "Tweeter", to: page_path(@conn, :index), class: "navbar-brand"%>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 	  <span class="navbar-toggler-icon"></span>
 	</button>
@@ -24,8 +24,8 @@
           </div>
         </div>
       <%= if @current_user do %>
-        <span class="text-light">
-          <%= @current_user.email %> |
+        <span class="text-light form-inline w-50">
+          <span class="mr-2"> <%= @current_user.email %> </span>
           <%= link "logout", to: session_path(@conn, :logout), method: :delete, class: "btn btn-primary" %>
         </span>
       <% else %>
