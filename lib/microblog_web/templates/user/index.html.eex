@@ -44,7 +44,7 @@
           <div>
             <ul class="list-inline">
               <li class="list-inline-item"><%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-outline-success my-2" %> </li>
-              <%= if @current_user && @current_user == user do %>
+              <%= if @current_user && (@current_user == user || @current_user.is_admin) do %>
               <li class="list-inline-item"><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-outline-success my-2" %> </li>
               <li class="list-inline-item"> <%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %> </li>
               <% end %>

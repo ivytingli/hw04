@@ -19,6 +19,7 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 import socket from "./socket"
+//import markdown from "markdown"
 
 let handlebars = require("handlebars");
 
@@ -113,3 +114,15 @@ $(function() {
 
   fetch_likes();
 });
+
+// var a = markdown.markdown.toHTML("Hello World!" )
+// console.log(a)
+
+//$(function() {
+//  var postArray = $('.postBody');
+
+//  for (var i = postArray.length - 1; i >= 0; i--) {
+//    var marked = markdown.markdown.toHTML(postArray[i].innerText);
+//    postArray[i].innerHTML = marked;
+//  }
+//})

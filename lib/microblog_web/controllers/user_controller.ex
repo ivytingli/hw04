@@ -1,5 +1,4 @@
 defmodule MicroblogWeb.UserController do
-  import Ecto.Changeset
   use MicroblogWeb, :controller
 
   alias Microblog.Account

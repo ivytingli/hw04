@@ -18,13 +18,13 @@
       <%= for post <- @posts do %>
       <tr>
         <td><%= post.user.handle %></td>
-        <td><%= post.body %></td>
+        <td class="postBody"><%= post.body %></td>
         <td class="text-right">
           <span><%= link "Show", to: post_path(@conn, :show, post), class: "btn btn-outline-success my-2 mr-lg-2" %></span>
-          <%= if @current_user do %>
+          <%= if @current_user && ( @current_user.is_admin || @current_user == post.user) do %>
           <span><%= link "Edit", to: post_path(@conn, :edit, post), class: "btn btn-outline-success my-2 mr-lg-2" %></span>
-          <% end %>
           <span><%= link "Delete", to: post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+          <% end %>
         </td>
       </tr>
       <% end %>

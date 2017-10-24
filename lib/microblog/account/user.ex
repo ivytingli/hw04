@@ -6,8 +6,8 @@ defmodule Microblog.Account.User do
 
   schema "users" do
     has_many :posts, Microblog.Blog.Post
-    has_many :followed_user, Microblog.Account.Follow, foreign_key: :follows
-    has_many :follower, Microblog.Account.Follow, foreign_key: :follows
+    has_many :followed_user, Microblog.Account.Follow, foreign_key: :followed_user_id
+    has_many :follower, Microblog.Account.Follow, foreign_key: :follower_id
     field :bio, :string
     field :email, :string
     field :handle, :string
@@ -15,6 +15,8 @@ defmodule Microblog.Account.User do
     field :password_hash, :string
     field :pw_tries, :integer, null: false, default: 0
     field :pw_last_try, :utc_datetime
+    field :is_admin, :boolean, default: false
+
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
 
@@ -24,7 +26,7 @@ defmodule Microblog.Account.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:name, :handle, :email, :bio, :password, :password_confirmation])
+    |> cast(attrs, [:name, :handle, :email, :bio, :password, :password_confirmation, :is_admin])
     |> validate_password(:password)
     |> put_pass_hash()
     |> validate_required([:name, :handle, :email, :password_hash])
