@@ -1,45 +1,53 @@
 <div class="container mt-4">
   <h2>Listing Users</h2>
+
+<%= if !@current_user do %>
   <div class="container mt-4">
     <span><%= link "New User", to: user_path(@conn, :new), class: "btn btn-outline-success my-2" %></span>
-    </button>
   </div>
+<% end %>
+
   <div class="row mt-4">
     <%= for user <- @users do %>
     <div class="col-md-4 my-2">
       <div class="card">
         <div class="card-body">
           <div>
+            <span style="float: right">
             <%= form_for @follows, follow_path(@conn, :create), fn f -> %>
             <%= if @follows.action do %>
             <div class="alert alert-danger">
-                <p>Oops, something went wrong! Please check the errors below.</p>
+              <p>Oops, something went wrong! Please check the errors below.</p>
             </div>
             <% end %>
+            <%= if @current_user do %>
             <div class="form-group">
-                <%= hidden_input f, :followed_user_id, class: "form-control", value: @current_user.id %>
-                <%= error_tag f, :followed_user_id %>
+              <%= hidden_input f, :followed_user_id, class: "form-control", value: @current_user.id %>
+              <%= error_tag f, :followed_user_id %>
             </div>
             <div class="form-group">
-                <%= hidden_input f, :follower_id, class: "form-control", value: user.id %>
-                <%= error_tag f, :follower_id %>
+              <%= hidden_input f, :follower_id, class: "form-control", value: user.id %>
+              <%= error_tag f, :follower_id %>
             </div>
             <div class="form-group">
-                <%= submit "Follow", class: "btn btn-primary" %>
+              <%= submit "Follow", class: "btn btn-primary" %>
             </div>
             <% end %>
-            
-            <div class="inline">
+            <% end %>
+            </span>
+            <span class="inline" style="clear: both">
               <%= link user.name, to: user_path(@conn, :show, user), class: "card-title card-link" %> <br>
               <span class="mb-2 text-muted card-link">@<%= user.handle %> </span>
-            </div>
+            </span>
           </div>
           <p class="card-text" style="clear: both"> <%= user.bio %> </p>
           <div>
             <ul class="list-inline">
               <li class="list-inline-item"><%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-outline-success my-2" %> </li>
+              <%= if @current_user && @current_user == user do %>
               <li class="list-inline-item"><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-outline-success my-2" %> </li>
               <li class="list-inline-item"> <%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %> </li>
+              <% end %>
             </ul>
           </div>
         </div>

@@ -1,19 +1,19 @@
-<h2>Listing Follows</h2>
-
-<table class="table">
-  <thead>
-    <tr>
-
-      <th>Followed User</th>
-      <th>Follower</th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for follow <- @follows do %>
-    <tr>
-      <td><%= follow.followed_user %></td>
-      <td><%= follow.follower %> </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
+<div class="container mt-4">
+  <h2>Listing Follows</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Followed User</th>
+        <th>Follower</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for follow <- @follows do %>
+      <tr>
+        <td><%= follow.followed_user %></td>
+        <td><%= follow.follower %> </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
