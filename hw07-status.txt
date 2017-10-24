@@ -1,0 +1,89 @@
+CS4550 Web Dev, Fall 2017.
+
+HW06 status report form.
+
+Please answer the following questions and submit the filled-in file 
+to Bottlenose.
+
+
+1. What's your name?
+
+Ivy Li
+
+2. What's the link to your Github repo's releases page?
+
+https://github.com/ivytingli/hw04/releases
+
+3. What's the link to your deployed Microblog app?
+
+microblog.ivyli.site
+
+4. Did you successfully deploy? If not, what doesn't work?
+
+Yes. It works.
+
+5. Did you successfully implement passwords securely? 
+If not, what doesn't work?
+
+Yes. I implemented passwords. It requires a minimum of 8 characters.
+Only hashes are stored. 
+
+6. Did you successfully implement admin users? 
+What paths are admin-only? What paths are accessible to all users.
+
+Yes. An admin user can delete/edit any user.
+Other users may only see the edit/delete for their own user.
+An admin user can also delete/edit any post.
+Other users may only edit/delete their own post.
+Accessible to all users are the edit/delete for their own posts and
+their own user and all posts.
+
+7. What changes did you make to clean up your application layout
+ and navigation?
+
+I added the new post ability to the post index. 
+Also the home page is now redirected to create a new user
+if you are not logged in. Clicking the nav-brand "Tweeter" 
+will now lead to the show user page instead of doing nothing.
+I took out the edit and new routes for follows.
+
+8. Did you complete any catch up tasks? Which ones? 
+Is there anything still not working about those features?
+
+I already completed all the catch up tasks.
+
+9. Did you complete any additional tasks? Which ones? 
+For each, describe how it should work and how that differs
+from your deployed functionality.
+
+I did follows but it's not perfect.
+Follows will add to a follows table display but
+there is nothing preventing you from following someone multiple times
+and there is nothing to delete follows right now.
+There is no follow functionality with the rest of the blog currently.
+I did HTTPS encryption.
+I did implementation of admins.
+I did some HTML and CSS changes.
+I also display changes for what you can see when you're 
+logged in vs not logged in, see examples below. 
+
+Examples: 
+- you can only edit the user if you're logged in as that user
+- follow buttons only show if you are logged in
+- post ability only shows if you are logged in
+- you can only see the new user button if you are logged in
+- if you click home while logged in you won't go to new user page
+*Exceptions: admin user can edit/delete other users' post/users.
+
+
+A. Did you complete any bonus addtional goals for extra credit?
+ For each, describe how it should work and how that differs from
+  your deployed functionality.
+
+No
+
+B. Is there any other useful information that you want to provide
+ for grading?
+
+For passwords, I referred to the Hex documentation for Argon2, as 
+well as the notes on Nat Tuck's website.
