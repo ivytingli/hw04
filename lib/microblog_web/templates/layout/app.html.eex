@@ -18,7 +18,6 @@
 	</button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link" href="#">Home</a>
             <%= link "Users", to: user_path(@conn, :index), class: "nav-item nav-link" %>
             <%= link "Posts", to: post_path(@conn, :index), class: "nav-item nav-link" %>
           </div>

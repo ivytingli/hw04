@@ -114,7 +114,13 @@ defmodule Microblog.Account do
 
   """
   def list_follows do
-    Repo.all(Follow) |> Repo.preload(:followed_user)
+    query = from f in Follow, 
+    join: u in User, where: f.followed_user_id == u.id,
+    join: uf in User, where: f.follower_id == uf.id,
+    select: %{follow_id: f.id, followed_user: u.handle, follower: uf.handle}
+    Repo.all(query)
+
+    #Repo.all(Follow) 
   end
 
   @doc """

@@ -1,4 +1,5 @@
 defmodule MicroblogWeb.UserController do
+  import Ecto.Changeset
   use MicroblogWeb, :controller
 
   alias Microblog.Account
@@ -6,7 +7,9 @@ defmodule MicroblogWeb.UserController do
 
   def index(conn, _params) do
     users = Account.list_users()
-    render(conn, "index.html", users: users)
+    follows = %Microblog.Account.Follow{}
+    follows = Account.change_follow(follows)
+    render(conn, "index.html", users: users, follows: follows)
   end
 
   def new(conn, _params) do

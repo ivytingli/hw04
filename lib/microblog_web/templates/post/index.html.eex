@@ -3,6 +3,10 @@
   <%= link "New Post", to: post_path(@conn, :new), class: "btn btn-outline-success my-2 mr-lg-2" %>
   <% end %>
 
+      <div class="container mt-2">
+       <%= render "form.html", Map.put(assigns, :action, post_path(@conn, :create)) %>
+      </div>
+
   <table class="table">
     <thead>
       <tr>

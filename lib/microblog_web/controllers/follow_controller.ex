@@ -17,7 +17,6 @@ defmodule MicroblogWeb.FollowController do
   def create(conn, %{"follow" => follow_params}) do
     case Account.create_follow(follow_params) do
       {:ok, follow} ->
-        follow = Microblog.Repo.preload(follow, :user)
 
         conn
         |> put_flash(:info, "Follow created successfully.")

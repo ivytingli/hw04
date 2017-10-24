@@ -10,6 +10,24 @@
       <div class="card">
         <div class="card-body">
           <div>
+            <%= form_for @follows, follow_path(@conn, :create), fn f -> %>
+            <%= if @follows.action do %>
+            <div class="alert alert-danger">
+                <p>Oops, something went wrong! Please check the errors below.</p>
+            </div>
+            <% end %>
+            <div class="form-group">
+                <%= hidden_input f, :followed_user_id, class: "form-control", value: @current_user.id %>
+                <%= error_tag f, :followed_user_id %>
+            </div>
+            <div class="form-group">
+                <%= hidden_input f, :follower_id, class: "form-control", value: user.id %>
+                <%= error_tag f, :follower_id %>
+            </div>
+            <div class="form-group">
+                <%= submit "Follow", class: "btn btn-primary" %>
+            </div>
+            <% end %>
             
             <div class="inline">
               <%= link user.name, to: user_path(@conn, :show, user), class: "card-title card-link" %> <br>

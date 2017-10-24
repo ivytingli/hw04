@@ -1,3 +1,4 @@
 defmodule MicroblogWeb.PostView do
-  use MicroblogWeb, :view
+	use MicroblogWeb, :view
+	alias MicroblogWeb.PostView
 end

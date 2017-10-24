@@ -6,7 +6,8 @@ defmodule MicroblogWeb.PostController do
 
   def index(conn, _params) do
     posts = Blog.list_posts()
-    render(conn, "index.html", posts: posts)
+    changeset = Blog.change_post(%Post{})
+    render(conn, "index.html", posts: posts, changeset: changeset)
   end
 
   def new(conn, _params) do

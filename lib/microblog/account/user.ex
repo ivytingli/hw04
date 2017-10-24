@@ -6,7 +6,8 @@ defmodule Microblog.Account.User do
 
   schema "users" do
     has_many :posts, Microblog.Blog.Post
-    has_many :follows, Microblog.Account.Follow
+    has_many :followed_user, Microblog.Account.Follow, foreign_key: :follows
+    has_many :follower, Microblog.Account.Follow, foreign_key: :follows
     field :bio, :string
     field :email, :string
     field :handle, :string
@@ -24,7 +25,6 @@ defmodule Microblog.Account.User do
   def changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, [:name, :handle, :email, :bio, :password, :password_confirmation])
-    |> cast_assoc(:follows)
     |> validate_password(:password)
     |> put_pass_hash()
     |> validate_required([:name, :handle, :email, :password_hash])
