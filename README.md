@@ -1,4 +1,6 @@
-Github link: https://github.com/ivytingli/hw04
+Twitter-esque microblog app created using Elixir, PostgreSQL, Phoenix Framework, Javascript, and Bootstrap.
+
+Notes
 
 Logout:
 - takes you to post index
